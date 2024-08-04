@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ restaurant.name }}{% endblock %}
+
+{% block content %}
+<h2>{{ restaurant.name }}</h2>
+<p>{{ restaurant.description }}</p>
+<h3>Reviews</h3>
+<ul class="list-group">
+    {% for review in reviews %}
+    <li class="list-group-item">
+        <strong>{{ review.user.username }}</strong>: {{ review.rating }} stars<br>
+        {{ review.comment }}
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_review' restaurant.id %}" class="btn btn-primary">Add Review</a>
+{% endblock %}
